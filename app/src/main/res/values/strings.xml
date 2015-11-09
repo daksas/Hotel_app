@@ -54,4 +54,9 @@
         <item>6 dní</item>
         <item>7 dní</item>
     </string-array>
+    <string-array name="description">
+        <item>1 den</item>
+        <item>2 dny</item>
+        <item>3 dny</item>
+    </string-array>
 </resources>

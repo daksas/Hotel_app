@@ -1,8 +1,8 @@
 package com.example.dak.hotel_app;
 
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.widget.AdapterView.OnItemClickListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
     private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,30 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+       // ListView list = (ListView) findViewById(R.id.listView);
 
-    }
+        if(findViewById(R.id.placeholder1)!=null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.placeholder, new fragmentList());
+            ft.commit();
+        }
 
+        if(findViewById(R.id.placeholder1)!=null){
+            FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
+            ft1.replace(R.id.placeholder1, new fragmentContent());
+            ft1.commit();
+        }
 
+       /* list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View clickView,
+                                    int number, long id) {
+                selectItem(number);
+            }
+        });*/
+
+        //z nějakého důvodu nefunguje změna layoutu na tablet, edit: již nefunguje vůbec.
+
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        private class SlideMenuClickListener implements
+    private class SlideMenuClickListener implements
             ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -78,5 +98,12 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
     }
+    public void klik(View view){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.placeholder, new fragmentContent());
+        ft.commit();
+    }
+
+
 
 }
